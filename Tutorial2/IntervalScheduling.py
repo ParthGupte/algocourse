@@ -16,19 +16,19 @@ print(schedule(Intervals))
 
 def partition(intervals: list):
     intervals.sort(key= lambda x:x[0])
-    partition = []
+    machines = []
     p = 0
     for i in range(len(intervals)):
         Ii = intervals[i]
         for j in range(i):
             Ij = intervals[j]
             if Ii[0] >= Ij[1]:
-                partition.append(partition[j])
+                machines.append(machines[j])
                 break
         else:
             p += 1
-            partition.append(p)
-    partition_dict = dict(zip(partition,intervals))
+            machines.append(p)
+    partition_dict = dict(zip(machines,intervals))
     return partition_dict
         
 print(partition(Intervals))
