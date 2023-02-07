@@ -16,20 +16,19 @@ print(schedule(Intervals))
 
 def partition(intervals: list):
     intervals.sort(key= lambda x:x[0])
-    intervals.append("end")
-    partition = {}
+    partition = []
     p = 0
-    j = 0
-    while intervals[j] != "end":
-        if j == 0:
-            partition[p] = [intervals[j]]
-        elif intervals[j][0] >= intervals[j-1][1]:
-            partition[p].append(intervals[j])
+    for i in range(len(intervals)):
+        Ii = intervals[i]
+        for j in range(i):
+            Ij = intervals[j]
+            if Ii[0] >= Ij[1]:
+                partition.append(partition[j])
+                break
         else:
             p += 1
-            partition[p] = []
-            partition[p].append(intervals[j])
-        j += 1
-    return partition
+            partition.append(p)
+    partition_dict = dict(zip(partition,intervals))
+    return partition_dict
         
 print(partition(Intervals))
