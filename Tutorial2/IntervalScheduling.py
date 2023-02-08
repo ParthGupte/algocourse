@@ -28,7 +28,13 @@ def partition(intervals: list):
         else:
             p += 1
             machines.append(p)
-    partition_dict = dict(zip(machines,intervals))
+            
+    partition_dict = {}
+    for key,inter in zip(machines,intervals):
+        if key not in partition_dict.keys():
+            partition_dict[key] = [inter]
+        else:
+            partition_dict[key].append(inter) 
     return partition_dict
         
 print(partition(Intervals))
