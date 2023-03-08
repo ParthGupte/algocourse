@@ -29,7 +29,7 @@ def knapsack(weights: list,values: list,W: int):
     L = tracer((n-1,W-1),weights,traceback)
     return L, max_value
 
-def tracer(coord: tuple,weights: list,traceback: np.ndarray):
+def tracer(coord: tuple,weights: list,traceback: np.ndarray): #returns one possible traceback
     if coord[0] < 0 or coord[1] < 0:
         return []
     p = traceback[coord]
@@ -42,16 +42,5 @@ def tracer(coord: tuple,weights: list,traceback: np.ndarray):
         L.append(coord[0])
     
     return L
-    # else:
-    #     coord_new1 = (coord[0]-1,coord[1])
-    #     L1 = tracer(coord_new1,weights,traceback)
-    #     for j in range(len(L)):
-    #         L1[j].append(coord[0])
-    #     coord_new2 = (coord[0]-1,coord[1])
-    #     L2 = tracer(coord_new2,L,weights,traceback)
-    #     for j in range(len(L)):
-    #         L2[j].append(coord[0])
-    #     L1.extend(L2)
-    #     L
     
 print(knapsack([2,2,3],[2,2,10],6))
